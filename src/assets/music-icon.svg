@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Music Icon</title>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <path d="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 Z" fill="#61DAFB" fill-rule="nonzero"></path>
+    <path d="M16,10.59 L16,6 L10,8 L10,16.59 C9.35,16.21 8.7,16 8,16 C6.34,16 5,17.34 5,19 C5,20.66 6.34,22 8,22 C9.66,22 11,20.66 11,19 L11,11.41 L14,10.41 L14,14.59 C13.35,14.21 12.7,14 12,14 C10.34,14 9,15.34 9,17 C9,18.66 10.34,20 12,20 C13.66,20 15,18.66 15,17 L15,12.59 C15.35,12.97 16,13 16,13 L16,10.59 Z" fill="#61DAFB" fill-rule="nonzero"></path>
+  </g>
+</svg>
