@@ -151,6 +151,32 @@
   display: inline-block;
 }
 
+.install-button {
+  margin-top: 16px;
+  padding: 14px 20px;
+  background: linear-gradient(90deg, #3a86ff 0%, #4dabff 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.install-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(58, 134, 255, 0.4);
+}
+
+.install-icon {
+  font-size: 18px;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -204,6 +230,41 @@
   flex: 1;
 }
 
+/* Offline Notice */
+.offline-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ff9500;
+  color: #000;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out;
+}
+
+.offline-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.offline-message {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .App {
@@ -237,5 +298,9 @@
   
   .main-content {
     padding: 16px;
+  }
+  
+  .offline-notice {
+    padding: 8px 16px;
   }
 }

@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# Apple Music Charts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Apple Music Charts](https://img.shields.io/badge/Apple-Music%20Charts-fa586a)
+![React](https://img.shields.io/badge/React-18-61dafb)
+![Vite](https://img.shields.io/badge/Vite-4-646cff)
 
-## Available Scripts
+A sleek, modern web application that displays Apple Music charts from around the world. Browse top songs, albums, music videos, and playlists with a beautiful, responsive interface.
 
-In the project directory, you can run:
+![App Screenshot](https://i.imgur.com/placeholder.png)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Multiple Chart Types**: Browse top songs, albums, music videos, and playlists
+- **Global Charts**: View music charts from 12 different countries
+- **Interactive UI**: Modern sidebar navigation with sleek card-based design
+- **Detailed Information**: View comprehensive details about each music item
+- **Audio Previews**: Listen to song previews directly in the app
+- **Responsive Design**: Works beautifully on both desktop and mobile devices
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technology Stack
 
-### `npm test`
+- **React**: Frontend UI library
+- **Vite**: Build tool and development server
+- **CSS3**: Custom styling with modern CSS features
+- **Apple Music API**: Data source for music charts
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js (v14 or later)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nithinyell/Apple-Music.git
+   cd Apple-Music
+   ```
 
-### `npm run eject`
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Open your browser and navigate to `http://localhost:5173`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Select a chart type (Songs, Albums, Music Videos, Playlists) from the sidebar
+- Choose a country from the dropdown menu
+- Click on any card to see more details
+- Click the play button on a card to open it in Apple Music
+- Use the "Refresh Charts" button to update the data
 
-## Learn More
+## Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+/src
+  /assets        # Images and static assets
+  /components    # React components
+  /networking    # API and data fetching utilities
+  /styles        # CSS files
+  App.jsx        # Main application component
+  main.jsx       # Application entry point
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API Information
 
-### Code Splitting
+This application uses the Apple Music RSS Feed API to fetch chart data:
+```
+https://rss.applemarketingtools.com/api/v2/{country}/music/most-played/{limit}/{feedType}.json
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The API is accessed through a CORS proxy to enable browser access.
 
-### Analyzing the Bundle Size
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-### Making a Progressive Web App
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Acknowledgments
 
-### Deployment
+- Apple Music for providing the RSS feeds
+- All Origins for the CORS proxy service
+- React and Vite communities for the excellent tools
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Created by [Nithin Yell](https://github.com/nithinyell)
