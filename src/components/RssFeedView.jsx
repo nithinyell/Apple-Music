@@ -29,16 +29,32 @@ const RssFeedView = ({ rssData, loading, error, feedType }) => {
     return <div className="rss-empty">No music data available</div>;
   }
 
-  // Extract feed information
-  const { feed } = rssData;
-  if (!feed) {
-    return <div className="rss-empty">Invalid feed format</div>;
-  }
+  // Extract feed information - handle both direct and nested formats
+  let feed, results;
+  
+  try {
+    // Check if the response is already in the expected format
+    if (rssData && rssData.feed) {
+      feed = rssData.feed;
+    } else if (rssData) {
+      // If not, the response might be the feed itself
+      feed = rssData;
+    } else {
+      throw new Error('No data available');
+    }
+    
+    if (!feed) {
+      throw new Error('Invalid feed format');
+    }
 
-  // Extract results/items from the feed
-  const { results } = feed;
-  if (!results || results.length === 0) {
-    return <div className="rss-empty">No items in the feed</div>;
+    // Extract results/items from the feed
+    results = feed.results;
+    if (!results || results.length === 0) {
+      throw new Error('No items in the feed');
+    }
+  } catch (err) {
+    console.error('Feed processing error:', err.message, rssData);
+    return <div className="rss-empty">{err.message || 'Error processing feed data'}</div>;
   }
 
   // Transform the RSS data to match our album card format based on feed type
@@ -110,6 +126,10 @@ const RssFeedView = ({ rssData, loading, error, feedType }) => {
   return (
     <div className="rss-feed-view" data-feed-type={feedType}>
       <AlbumGrid albums={albums} />
+      {/* Debug info - remove in production */}
+      {/* <div style={{display: 'none'}}>
+        <pre>{JSON.stringify({feedType, feedStructure: feed ? 'Has feed' : 'No feed', resultsCount: results?.length || 0}, null, 2)}</pre>
+      </div> */}
     </div>
   );
 };

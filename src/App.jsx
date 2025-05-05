@@ -8,6 +8,7 @@ import {
   APPLE_MUSIC_COUNTRIES
 } from './networking/api';
 import appleLogo from './assets/apple_logo.png';
+import './styles/SafeArea.css';
 
 function App() {
   // RSS feed state
@@ -55,16 +56,90 @@ function App() {
     setRssError(null);
     
     try {
-      const data = await fetchAppleMusicRSS({
+      const responseData = await fetchAppleMusicRSS({
         feedType: rssFeedType,
         country: rssCountry,
         limit: 50,
-        proxyOption: 'allOrigins' // Always use allOrigins
+        proxyOption: 'direct' // Try direct first, then fall back to proxy if needed
       });
-      setRssData(data);
+      
+      // Check if the data has the expected structure
+      if (!responseData) {
+        throw new Error('No data received from API');
+      }
+      
+      // Log the data structure to help debug
+      console.log(`Received ${rssFeedType} data:`, {
+        hasData: !!responseData,
+        hasFeed: !!responseData.feed,
+        resultsCount: responseData.feed?.results?.length || 'N/A'
+      });
+      
+      // Create a new object to avoid modifying the constant
+      let processedData = { ...responseData };
+      
+      // Ensure we have a valid feed structure
+      if (!processedData.feed || !processedData.feed.results || !processedData.feed.results.length) {
+        console.warn('Invalid or empty feed structure, attempting to fix');
+        
+        // Try to fix the data structure if possible
+        if (processedData.results && Array.isArray(processedData.results)) {
+          // If the results are directly on the data object
+          processedData = { feed: { ...processedData, results: processedData.results } };
+        } else if (typeof processedData === 'string' && processedData.includes('"results":[')) {
+          // If we got a string that looks like JSON
+          try {
+            const parsed = JSON.parse(processedData);
+            processedData = parsed.feed ? parsed : { feed: parsed };
+          } catch (parseError) {
+            console.error('Failed to parse string data as JSON', parseError);
+          }
+        }
+        
+        // If we still don't have valid data, create a minimal structure
+        if (!processedData.feed || !processedData.feed.results || !processedData.feed.results.length) {
+          console.warn('Creating minimal feed structure');
+          // Create a minimal feed structure instead of throwing an error
+          processedData = {
+            feed: {
+              title: `${rssFeedType.charAt(0).toUpperCase() + rssFeedType.slice(1)}`,
+              updated: new Date().toISOString(),
+              results: []
+            }
+          };
+        }
+      }
+      
+      setRssData(processedData);
     } catch (err) {
       console.error('RSS fetch error:', err);
-      setRssError(err.message);
+      setRssError(err.message || 'Failed to load music data');
+      
+      // Create fallback data directly without import
+      console.log(`Creating fallback data for ${rssFeedType}`);
+      
+      // Basic fallback data structure
+      const fallbackData = {
+        feed: {
+          title: `${rssFeedType.charAt(0).toUpperCase() + rssFeedType.slice(1)} (Fallback)`,
+          id: `https://rss.applemarketingtools.com/api/v2/us/music/most-played/50/${rssFeedType}.json`,
+          author: { name: "Apple", url: "https://www.apple.com/" },
+          updated: new Date().toISOString(),
+          results: [
+            {
+              artistName: "Sample Artist",
+              id: Date.now().toString(),
+              name: "Sample Song",
+              releaseDate: new Date().toISOString().split('T')[0],
+              artworkUrl100: "https://via.placeholder.com/100?text=Music",
+              genres: [{ name: "Music" }],
+              url: "#"
+            }
+          ]
+        }
+      };
+      
+      setRssData(fallbackData);
     } finally {
       setRssLoading(false);
     }

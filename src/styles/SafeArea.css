@@ -1,0 +1,49 @@
+/* Safe Area CSS Variables - these are set by FixSafeArea.js */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: 0px; /* Default to 0 for bottom - will be set by JS */
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+/* Fix for iOS standalone mode */
+@media all and (display-mode: standalone) {
+  .App {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+  
+  body {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+}
+
+/* Portrait mode - no bottom safe area */
+body.portrait-mode .App {
+  padding-bottom: 0 !important;
+}
+
+body.portrait-mode .app-main,
+body.portrait-mode .app-sidebar,
+body.portrait-mode .sidebar-content,
+body.portrait-mode .main-content {
+  padding-bottom: 16px !important;
+}
+
+/* Landscape mode - use safe area for bottom */
+body.landscape-mode .App {
+  padding-bottom: var(--sab) !important;
+}
+
+body.landscape-mode .app-main {
+  padding-bottom: var(--sab) !important;
+}
+
+body.landscape-mode .sidebar-content {
+  padding-bottom: calc(16px + var(--sab)) !important;
+}
+
+body.landscape-mode .main-content {
+  padding-bottom: calc(24px + var(--sab)) !important;
+}

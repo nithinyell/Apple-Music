@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AlbumCard from './AlbumCard';
 import '../styles/AlbumGrid.css';
+import useImageCache from '../hooks/useImageCache';
 
 const AlbumGrid = ({ albums }) => {
+  const { preloadImages } = useImageCache();
+  
+  // Preload images for better user experience
+  useEffect(() => {
+    if (albums && albums.length > 0) {
+      // Extract all image URLs
+      const imageUrls = albums
+        .map(album => album.image || album.artwork || album.cover || album.thumbnail)
+        .filter(Boolean);
+      
+      // Preload images in the background
+      preloadImages(imageUrls);
+    }
+  }, [albums, preloadImages]);
+
   if (!albums || albums.length === 0) {
     return <p className="no-albums">No albums to display</p>;
   }

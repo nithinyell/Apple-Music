@@ -5,6 +5,7 @@
   width: 100%;
   grid-auto-rows: min-content;
   align-items: start;
+  padding-bottom: env(safe-area-inset-bottom, 20px); /* Add padding for iOS devices with notches */
 }
 
 .no-albums {
