@@ -4,6 +4,9 @@
   --sar: env(safe-area-inset-right, 0px);
   --sab: 0px; /* Default to 0 for bottom - will be set by JS */
   --sal: env(safe-area-inset-left, 0px);
+  
+  /* Viewport height fix for mobile browsers */
+  --vh: 1vh;
 }
 
 /* Fix for iOS standalone mode */

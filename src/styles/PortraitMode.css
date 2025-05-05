@@ -1,0 +1,53 @@
+/**
+ * Portrait mode specific fixes
+ */
+
+@media screen and (orientation: portrait) {
+  /* Fix header height in portrait mode */
+  .main-header {
+    padding: 10px 16px !important;
+    padding-top: calc(10px + var(--sat, 0px)) !important;
+    padding-left: calc(16px + var(--sal, 0px)) !important;
+    padding-right: calc(16px + var(--sar, 0px)) !important;
+  }
+  
+  .main-header h2 {
+    font-size: 18px !important;
+  }
+  
+  .country-badge {
+    font-size: 12px !important;
+    padding: 2px 8px !important;
+  }
+  
+  .last-updated {
+    font-size: 10px !important;
+    margin-top: 2px !important;
+  }
+  
+  /* Fix bottom padding in portrait mode */
+  .App {
+    padding-bottom: 0 !important;
+  }
+  
+  .app-main {
+    padding-bottom: 0 !important;
+  }
+  
+  .main-content {
+    padding-bottom: 16px !important;
+  }
+  
+  .sidebar-content {
+    padding-bottom: 16px !important;
+  }
+  
+  /* Fix black area at bottom */
+  body {
+    padding-bottom: 0 !important;
+  }
+  
+  html {
+    padding-bottom: 0 !important;
+  }
+}

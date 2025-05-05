@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import RssFeedView from './components/RssFeedView';
 import OfflineNotice from './components/OfflineNotice';
+import DynamicHeader from './components/DynamicHeader';
+import ScrollToTop from './components/ScrollToTop';
 import { 
   fetchAppleMusicRSS, 
   APPLE_MUSIC_FEED_TYPES,
@@ -9,6 +11,9 @@ import {
 } from './networking/api';
 import appleLogo from './assets/apple_logo.png';
 import './styles/SafeArea.css';
+import './styles/FixPadding.css';
+
+import DirectStyleInjection from './components/DirectStyleInjection';
 
 function App() {
   // RSS feed state
@@ -165,6 +170,7 @@ function App() {
 
   return (
     <div className="App">
+      <DirectStyleInjection />
       <OfflineNotice />
       
       <div className="app-sidebar">
@@ -233,21 +239,14 @@ function App() {
       </div>
       
       <div className="app-main">
-        <div className="main-header">
-          <h2>
-            {APPLE_MUSIC_FEED_TYPES[rssFeedType]?.name || 'Music Charts'} 
-            <span className="country-badge">
-              {APPLE_MUSIC_COUNTRIES[rssCountry]}
-            </span>
-          </h2>
-          {rssData && rssData.feed && (
-            <p className="last-updated">
-              Updated: {new Date(rssData.feed.updated).toLocaleString()}
-            </p>
-          )}
-        </div>
+        <DynamicHeader 
+          title={APPLE_MUSIC_FEED_TYPES[rssFeedType]?.name || 'Music Charts'}
+          country={rssCountry}
+          lastUpdated={rssData?.feed?.updated}
+        />
         
         <div className="main-content">
+          <ScrollToTop />
           <RssFeedView 
             rssData={rssData} 
             loading={rssLoading} 

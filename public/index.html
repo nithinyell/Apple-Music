@@ -3,20 +3,34 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="API Fetcher - React application"
-    />
-    <title>API Fetcher</title>
+    <meta name="description" content="Apple Music Charts - Top songs, albums, and playlists" />
+    <title>Apple Music Charts</title>
+    <style>
+      /* Critical CSS to prevent flashing */
+      html, body, #root {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: #fff;
+        overflow: hidden;
+      }
+      
+      @supports (-webkit-touch-callout: none) {
+        body {
+          /* iOS height fix */
+          height: -webkit-fill-available;
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-  </body>
   </body>
 </html>

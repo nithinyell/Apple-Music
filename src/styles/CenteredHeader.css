@@ -1,0 +1,53 @@
+/**
+ * Styles to ensure the header content is centered
+ */
+
+/* Base header styles */
+.main-header {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.main-header h2 {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.country-badge {
+  margin-left: 8px !important;
+}
+
+.last-updated {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* PWA specific styles */
+@media all and (display-mode: standalone) {
+  .main-header {
+    padding: 5px 16px !important;
+    padding-top: calc(5px + var(--sat, 0px)) !important;
+  }
+  
+  .main-header h2 {
+    font-size: 18px !important;
+    margin: 0 !important;
+  }
+  
+  .country-badge {
+    font-size: 12px !important;
+    padding: 2px 8px !important;
+  }
+  
+  .last-updated {
+    font-size: 10px !important;
+    margin-top: 2px !important;
+  }
+}

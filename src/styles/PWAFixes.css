@@ -1,0 +1,123 @@
+/**
+ * Additional fixes specifically for PWA mode
+ */
+
+/* Fix for the black area at the bottom of the screen */
+body.pwa-mode {
+  /* Ensure the body fills the entire screen */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+body.pwa-mode .App {
+  /* Ensure the App container fills the entire screen */
+  height: 100vh;
+  height: -webkit-fill-available;
+  padding-bottom: 0 !important;
+}
+
+body.pwa-mode .app-main {
+  /* Ensure content area doesn't have extra padding */
+  padding-bottom: 0 !important;
+}
+
+body.pwa-mode .main-content {
+  /* Add a small amount of padding to prevent content from touching the bottom */
+  padding-bottom: 16px !important;
+}
+
+/* Fix for the header height issues - ONLY in standalone mode */
+@media all and (display-mode: standalone) {
+  body.pwa-mode .main-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px 16px !important;
+    padding-top: max(8px, var(--sat, 0px)) !important; /* Use max to ensure adequate padding */
+    height: auto !important;
+    min-height: calc(44px + var(--sat, 0px)) !important; /* Add safe area to min-height */
+    max-height: calc(70px + var(--sat, 0px)) !important; /* Add safe area to max-height */
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    position: fixed !important; /* Fix the header at the top */
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+  }
+}
+
+body.pwa-mode .main-header h2 {
+  /* Center the title */
+  font-size: 16px !important;
+  margin: 0 !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body.pwa-mode .country-badge {
+  /* Make the country badge smaller and centered */
+  font-size: 11px !important;
+  padding: 1px 6px !important;
+  margin-left: 6px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+}
+
+body.pwa-mode .last-updated {
+  /* Make the last updated text smaller and centered */
+  font-size: 9px !important;
+  margin-top: 2px !important;
+  text-align: center !important;
+  width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Fix for iOS devices */
+@supports (-webkit-touch-callout: none) {
+  body.pwa-mode {
+    /* iOS-specific height fix */
+    height: -webkit-fill-available !important;
+  }
+  
+  body.pwa-mode .App {
+    /* iOS-specific height fix */
+    height: -webkit-fill-available !important;
+  }
+}
+
+body.pwa-mode {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.pwa-mode .App {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.pwa-mode .app-main {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.pwa-mode .main-content {
+  padding: 16px !important;
+}
